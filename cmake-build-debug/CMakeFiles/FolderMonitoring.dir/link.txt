@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/FolderMonitoring.dir/main.cpp.o CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o  -o FolderMonitoring 

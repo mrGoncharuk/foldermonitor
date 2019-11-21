@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mhonchar/Documents/FolderMonitoring/DirectoryMonitor.cpp
+DirectoryMonitor.hpp
+/home/mhonchar/Documents/FolderMonitoring/DirectoryMonitor.hpp
+
+/home/mhonchar/Documents/FolderMonitoring/DirectoryMonitor.hpp
+string
+-
+sys/inotify.h
+-
+unistd.h
+-
+iostream
+-
+
