@@ -8,28 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug"/>
+				<Option working_dir="/home/mhonchar/Documents/foldermonitor/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug"/>
+				<Option working_dir="/home/mhonchar/Documents/foldermonitor/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="FolderMonitoring">
-				<Option output="/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/FolderMonitoring" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug"/>
+				<Option output="/home/mhonchar/Documents/foldermonitor/cmake-build-debug/FolderMonitoring" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mhonchar/Documents/foldermonitor/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -44,15 +44,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 FolderMonitoring"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 FolderMonitoring"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="FolderMonitoring/fast">
-				<Option output="/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/FolderMonitoring" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug"/>
+				<Option output="/home/mhonchar/Documents/foldermonitor/cmake-build-debug/FolderMonitoring" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/mhonchar/Documents/foldermonitor/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -67,39 +67,39 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 FolderMonitoring/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 FolderMonitoring/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug"/>
+				<Option working_dir="/home/mhonchar/Documents/foldermonitor/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/mhonchar/Documents/foldermonitor/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/mhonchar/Documents/FolderMonitoring/DbWriter.cpp">
+		<Unit filename="/home/mhonchar/Documents/foldermonitor/DbWriter.cpp">
 			<Option target="FolderMonitoring"/>
 		</Unit>
-		<Unit filename="/home/mhonchar/Documents/FolderMonitoring/DbWriter.hpp">
+		<Unit filename="/home/mhonchar/Documents/foldermonitor/DbWriter.hpp">
 			<Option target="FolderMonitoring"/>
 		</Unit>
-		<Unit filename="/home/mhonchar/Documents/FolderMonitoring/DirectoryMonitor.cpp">
+		<Unit filename="/home/mhonchar/Documents/foldermonitor/DirectoryMonitor.cpp">
 			<Option target="FolderMonitoring"/>
 		</Unit>
-		<Unit filename="/home/mhonchar/Documents/FolderMonitoring/DirectoryMonitor.hpp">
+		<Unit filename="/home/mhonchar/Documents/foldermonitor/DirectoryMonitor.hpp">
 			<Option target="FolderMonitoring"/>
 		</Unit>
-		<Unit filename="/home/mhonchar/Documents/FolderMonitoring/main.cpp">
+		<Unit filename="/home/mhonchar/Documents/foldermonitor/main.cpp">
 			<Option target="FolderMonitoring"/>
 		</Unit>
-		<Unit filename="/home/mhonchar/Documents/FolderMonitoring/CMakeLists.txt">
+		<Unit filename="/home/mhonchar/Documents/foldermonitor/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

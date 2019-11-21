@@ -43,10 +43,10 @@ RM = /snap/clion/92/bin/cmake/linux/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mhonchar/Documents/FolderMonitoring
+CMAKE_SOURCE_DIR = /home/mhonchar/Documents/foldermonitor
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mhonchar/Documents/FolderMonitoring/cmake-build-debug
+CMAKE_BINARY_DIR = /home/mhonchar/Documents/foldermonitor/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/FolderMonitoring.dir/depend.make
@@ -59,42 +59,42 @@ include CMakeFiles/FolderMonitoring.dir/flags.make
 
 CMakeFiles/FolderMonitoring.dir/main.cpp.o: CMakeFiles/FolderMonitoring.dir/flags.make
 CMakeFiles/FolderMonitoring.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FolderMonitoring.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FolderMonitoring.dir/main.cpp.o -c /home/mhonchar/Documents/FolderMonitoring/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FolderMonitoring.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FolderMonitoring.dir/main.cpp.o -c /home/mhonchar/Documents/foldermonitor/main.cpp
 
 CMakeFiles/FolderMonitoring.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FolderMonitoring.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mhonchar/Documents/FolderMonitoring/main.cpp > CMakeFiles/FolderMonitoring.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mhonchar/Documents/foldermonitor/main.cpp > CMakeFiles/FolderMonitoring.dir/main.cpp.i
 
 CMakeFiles/FolderMonitoring.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FolderMonitoring.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mhonchar/Documents/FolderMonitoring/main.cpp -o CMakeFiles/FolderMonitoring.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mhonchar/Documents/foldermonitor/main.cpp -o CMakeFiles/FolderMonitoring.dir/main.cpp.s
 
 CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o: CMakeFiles/FolderMonitoring.dir/flags.make
 CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o: ../DirectoryMonitor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o -c /home/mhonchar/Documents/FolderMonitoring/DirectoryMonitor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o -c /home/mhonchar/Documents/foldermonitor/DirectoryMonitor.cpp
 
 CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mhonchar/Documents/FolderMonitoring/DirectoryMonitor.cpp > CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mhonchar/Documents/foldermonitor/DirectoryMonitor.cpp > CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.i
 
 CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mhonchar/Documents/FolderMonitoring/DirectoryMonitor.cpp -o CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mhonchar/Documents/foldermonitor/DirectoryMonitor.cpp -o CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.s
 
 CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o: CMakeFiles/FolderMonitoring.dir/flags.make
 CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o: ../DbWriter.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o -c /home/mhonchar/Documents/FolderMonitoring/DbWriter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o -c /home/mhonchar/Documents/foldermonitor/DbWriter.cpp
 
 CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mhonchar/Documents/FolderMonitoring/DbWriter.cpp > CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mhonchar/Documents/foldermonitor/DbWriter.cpp > CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.i
 
 CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mhonchar/Documents/FolderMonitoring/DbWriter.cpp -o CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mhonchar/Documents/foldermonitor/DbWriter.cpp -o CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.s
 
 # Object files for target FolderMonitoring
 FolderMonitoring_OBJECTS = \
@@ -110,7 +110,7 @@ FolderMonitoring: CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o
 FolderMonitoring: CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o
 FolderMonitoring: CMakeFiles/FolderMonitoring.dir/build.make
 FolderMonitoring: CMakeFiles/FolderMonitoring.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable FolderMonitoring"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable FolderMonitoring"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FolderMonitoring.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -123,6 +123,6 @@ CMakeFiles/FolderMonitoring.dir/clean:
 .PHONY : CMakeFiles/FolderMonitoring.dir/clean
 
 CMakeFiles/FolderMonitoring.dir/depend:
-	cd /home/mhonchar/Documents/FolderMonitoring/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mhonchar/Documents/FolderMonitoring /home/mhonchar/Documents/FolderMonitoring /home/mhonchar/Documents/FolderMonitoring/cmake-build-debug /home/mhonchar/Documents/FolderMonitoring/cmake-build-debug /home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/CMakeFiles/FolderMonitoring.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/mhonchar/Documents/foldermonitor/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mhonchar/Documents/foldermonitor /home/mhonchar/Documents/foldermonitor /home/mhonchar/Documents/foldermonitor/cmake-build-debug /home/mhonchar/Documents/foldermonitor/cmake-build-debug /home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles/FolderMonitoring.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/FolderMonitoring.dir/depend
 

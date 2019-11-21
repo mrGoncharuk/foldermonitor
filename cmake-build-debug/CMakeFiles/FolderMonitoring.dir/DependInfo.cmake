@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/mhonchar/Documents/FolderMonitoring/DbWriter.cpp" "/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o"
-  "/home/mhonchar/Documents/FolderMonitoring/DirectoryMonitor.cpp" "/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o"
-  "/home/mhonchar/Documents/FolderMonitoring/main.cpp" "/home/mhonchar/Documents/FolderMonitoring/cmake-build-debug/CMakeFiles/FolderMonitoring.dir/main.cpp.o"
+  "/home/mhonchar/Documents/foldermonitor/DbWriter.cpp" "/home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o"
+  "/home/mhonchar/Documents/foldermonitor/DirectoryMonitor.cpp" "/home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o"
+  "/home/mhonchar/Documents/foldermonitor/main.cpp" "/home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles/FolderMonitoring.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
