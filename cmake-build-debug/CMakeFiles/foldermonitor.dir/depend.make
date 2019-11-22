@@ -7,6 +7,7 @@ CMakeFiles/foldermonitor.dir/DbWriter.cpp.o: ../DbWriter.hpp
 CMakeFiles/foldermonitor.dir/DirectoryMonitor.cpp.o: ../DirectoryMonitor.cpp
 CMakeFiles/foldermonitor.dir/DirectoryMonitor.cpp.o: ../DirectoryMonitor.hpp
 
+CMakeFiles/foldermonitor.dir/main.cpp.o: ../DbWriter.hpp
 CMakeFiles/foldermonitor.dir/main.cpp.o: ../DirectoryMonitor.hpp
 CMakeFiles/foldermonitor.dir/main.cpp.o: ../main.cpp
 

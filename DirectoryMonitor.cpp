@@ -36,7 +36,7 @@ DirectoryMonitor &DirectoryMonitor::operator=(DirectoryMonitor const &rhs)
 	this->fname = rhs.fname;
 }
 
-DirectoryMonitor::DirectoryMonitor(const std::string path)
+DirectoryMonitor::DirectoryMonitor(const std::string &path)
 	: fileDescriptor(-1)
 	, watchDescriptor(-1)
 	, fname(path)
@@ -82,7 +82,7 @@ void	DirectoryMonitor::startWatching(std::mutex &p_mutex, std::list<std::string>
 				{
 					std::lock_guard<std::mutex> lock(p_mutex);
 					syslog (LOG_INFO, "File created <%s>", event->name);
-					std::cout << "File created: " << event->name << std::endl;
+
 					filenames.push_back(event->name);
 				}
 			}
@@ -90,7 +90,3 @@ void	DirectoryMonitor::startWatching(std::mutex &p_mutex, std::list<std::string>
 		}
 	}
 }
-
-std::string DirectoryMonitor::getFname() const { return (fname); }
-void	DirectoryMonitor::setFname(std::string const p_fname) { fname = p_fname; }
-

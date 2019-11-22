@@ -6,9 +6,31 @@
 
 #IncludeRegexTransform: 
 
-/home/mhonchar/Documents/foldermonitor/DirectoryMonitor.cpp
-DirectoryMonitor.hpp
-/home/mhonchar/Documents/foldermonitor/DirectoryMonitor.hpp
+/home/mhonchar/Documents/foldermonitor/DbWriter.cpp
+DbWriter.hpp
+/home/mhonchar/Documents/foldermonitor/DbWriter.hpp
+iostream
+-
+
+/home/mhonchar/Documents/foldermonitor/DbWriter.hpp
+string
+-
+sstream
+-
+fstream
+-
+list
+-
+atomic
+-
+mutex
+-
+thread
+-
+syslog.h
+-
+sqlite3.h
+/home/mhonchar/Documents/foldermonitor/sqlite3.h
 
 /home/mhonchar/Documents/foldermonitor/DirectoryMonitor.hpp
 string
@@ -19,9 +41,25 @@ unistd.h
 -
 iostream
 -
+thread
+-
 mutex
 -
-thread
+syslog.h
+-
+list
+-
+atomic
+-
+
+/home/mhonchar/Documents/foldermonitor/main.cpp
+iostream
+-
+DirectoryMonitor.hpp
+/home/mhonchar/Documents/foldermonitor/DirectoryMonitor.hpp
+DbWriter.hpp
+/home/mhonchar/Documents/foldermonitor/DbWriter.hpp
+string
 -
 syslog.h
 -
@@ -30,7 +68,5 @@ mutex
 list
 -
 atomic
--
-chrono
 -
 

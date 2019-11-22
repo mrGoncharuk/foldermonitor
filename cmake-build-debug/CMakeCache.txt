@@ -229,6 +229,12 @@ foldermonitor_BINARY_DIR:STATIC=/home/mhonchar/Documents/foldermonitor/cmake-bui
 //Value Computed by CMake
 foldermonitor_SOURCE_DIR:STATIC=/home/mhonchar/Documents/foldermonitor
 
+//The directory containing a CMake configuration file for sqlite3-config.cmake.
+sqlite3-config.cmake_DIR:PATH=sqlite3-config.cmake_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for sqlite3.
+sqlite3_DIR:PATH=sqlite3_DIR-NOTFOUND
+
 
 ########################
 # INTERNAL cache entries
