@@ -6,12 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/home/mhonchar/Documents/foldermonitor/DbWriter.cpp
-DbWriter.hpp
-/home/mhonchar/Documents/foldermonitor/DbWriter.hpp
-iostream
--
-
 /home/mhonchar/Documents/foldermonitor/DbWriter.hpp
 string
 -
@@ -68,5 +62,9 @@ mutex
 list
 -
 atomic
+-
+sys/stat.h
+-
+signal.h
 -
 
