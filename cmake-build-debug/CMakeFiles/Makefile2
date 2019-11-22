@@ -53,12 +53,12 @@ CMAKE_BINARY_DIR = /home/mhonchar/Documents/foldermonitor/cmake-build-debug
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/FolderMonitoring.dir/all
+all: CMakeFiles/foldermonitor.dir/all
 
 .PHONY : all
 
 # The main recursive "clean" target.
-clean: CMakeFiles/FolderMonitoring.dir/clean
+clean: CMakeFiles/foldermonitor.dir/clean
 
 .PHONY : clean
 
@@ -68,31 +68,31 @@ preinstall:
 .PHONY : preinstall
 
 #=============================================================================
-# Target rules for target CMakeFiles/FolderMonitoring.dir
+# Target rules for target CMakeFiles/foldermonitor.dir
 
 # All Build rule for target.
-CMakeFiles/FolderMonitoring.dir/all:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/depend
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target FolderMonitoring"
-.PHONY : CMakeFiles/FolderMonitoring.dir/all
+CMakeFiles/foldermonitor.dir/all:
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/depend
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target foldermonitor"
+.PHONY : CMakeFiles/foldermonitor.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/FolderMonitoring.dir/rule: cmake_check_build_system
+CMakeFiles/foldermonitor.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles 4
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/FolderMonitoring.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/foldermonitor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mhonchar/Documents/foldermonitor/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/FolderMonitoring.dir/rule
+.PHONY : CMakeFiles/foldermonitor.dir/rule
 
 # Convenience name for target.
-FolderMonitoring: CMakeFiles/FolderMonitoring.dir/rule
+foldermonitor: CMakeFiles/foldermonitor.dir/rule
 
-.PHONY : FolderMonitoring
+.PHONY : foldermonitor
 
 # clean rule for target.
-CMakeFiles/FolderMonitoring.dir/clean:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/clean
-.PHONY : CMakeFiles/FolderMonitoring.dir/clean
+CMakeFiles/foldermonitor.dir/clean:
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/clean
+.PHONY : CMakeFiles/foldermonitor.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

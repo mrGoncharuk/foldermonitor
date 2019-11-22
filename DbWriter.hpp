@@ -5,9 +5,15 @@
 #ifndef FOLDERMONITORING_DBWRITER_HPP
 #define FOLDERMONITORING_DBWRITER_HPP
 
+#include "sqlite3.h"
 
 class DBWriter
 {
+private:
+	sqlite3* DB;
+public:
+	DBWriter();
+	~DBWriter();
 
 };
 

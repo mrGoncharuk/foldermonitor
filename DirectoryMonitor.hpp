@@ -9,6 +9,14 @@
 # include <sys/inotify.h>
 # include <unistd.h>
 # include <iostream>
+# include <mutex>
+# include <thread>
+# include <syslog.h>
+# include <mutex>
+# include <list>
+# include <atomic>
+# include <chrono>
+
 class DirectoryMonitor
 {
 private:
@@ -21,8 +29,8 @@ public:
 	DirectoryMonitor(DirectoryMonitor const &rhs);
 	DirectoryMonitor &operator=(DirectoryMonitor const &rhs);
 	DirectoryMonitor(const std::string path);
-	bool startWatching();
-
+	void startWatching(std::mutex &p_mutex, std::list<std::string> &filenames, std::atomic<bool> &isRunning);
+	bool initWatcher();
 	std::string getFname() const;
 	void	setFname(std::string const p_fname);
 public:

@@ -111,17 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named FolderMonitoring
+# Target rules for targets named foldermonitor
 
 # Build rule for target.
-FolderMonitoring: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 FolderMonitoring
-.PHONY : FolderMonitoring
+foldermonitor: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 foldermonitor
+.PHONY : foldermonitor
 
 # fast build rule for target.
-FolderMonitoring/fast:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/build
-.PHONY : FolderMonitoring/fast
+foldermonitor/fast:
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/build
+.PHONY : foldermonitor/fast
 
 DbWriter.o: DbWriter.cpp.o
 
@@ -129,7 +129,7 @@ DbWriter.o: DbWriter.cpp.o
 
 # target to build an object file
 DbWriter.cpp.o:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.o
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/DbWriter.cpp.o
 .PHONY : DbWriter.cpp.o
 
 DbWriter.i: DbWriter.cpp.i
@@ -138,7 +138,7 @@ DbWriter.i: DbWriter.cpp.i
 
 # target to preprocess a source file
 DbWriter.cpp.i:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.i
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/DbWriter.cpp.i
 .PHONY : DbWriter.cpp.i
 
 DbWriter.s: DbWriter.cpp.s
@@ -147,7 +147,7 @@ DbWriter.s: DbWriter.cpp.s
 
 # target to generate assembly for a file
 DbWriter.cpp.s:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/DbWriter.cpp.s
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/DbWriter.cpp.s
 .PHONY : DbWriter.cpp.s
 
 DirectoryMonitor.o: DirectoryMonitor.cpp.o
@@ -156,7 +156,7 @@ DirectoryMonitor.o: DirectoryMonitor.cpp.o
 
 # target to build an object file
 DirectoryMonitor.cpp.o:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.o
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/DirectoryMonitor.cpp.o
 .PHONY : DirectoryMonitor.cpp.o
 
 DirectoryMonitor.i: DirectoryMonitor.cpp.i
@@ -165,7 +165,7 @@ DirectoryMonitor.i: DirectoryMonitor.cpp.i
 
 # target to preprocess a source file
 DirectoryMonitor.cpp.i:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.i
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/DirectoryMonitor.cpp.i
 .PHONY : DirectoryMonitor.cpp.i
 
 DirectoryMonitor.s: DirectoryMonitor.cpp.s
@@ -174,7 +174,7 @@ DirectoryMonitor.s: DirectoryMonitor.cpp.s
 
 # target to generate assembly for a file
 DirectoryMonitor.cpp.s:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/DirectoryMonitor.cpp.s
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/DirectoryMonitor.cpp.s
 .PHONY : DirectoryMonitor.cpp.s
 
 main.o: main.cpp.o
@@ -183,7 +183,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/main.cpp.o
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -192,7 +192,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/main.cpp.i
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -201,7 +201,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) -f CMakeFiles/FolderMonitoring.dir/build.make CMakeFiles/FolderMonitoring.dir/main.cpp.s
+	$(MAKE) -f CMakeFiles/foldermonitor.dir/build.make CMakeFiles/foldermonitor.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -211,7 +211,7 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... FolderMonitoring"
+	@echo "... foldermonitor"
 	@echo "... edit_cache"
 	@echo "... DbWriter.o"
 	@echo "... DbWriter.i"

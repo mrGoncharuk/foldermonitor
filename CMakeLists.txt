@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(FolderMonitoring)
+project(foldermonitor)
 
 set(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_FLAGS -pthread)
 
-add_executable(FolderMonitoring main.cpp DirectoryMonitor.cpp DirectoryMonitor.hpp DbWriter.cpp DbWriter.hpp)
+add_executable(foldermonitor main.cpp DirectoryMonitor.cpp DirectoryMonitor.hpp DbWriter.cpp DbWriter.hpp)
