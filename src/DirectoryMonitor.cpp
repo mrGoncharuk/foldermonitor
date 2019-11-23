@@ -2,7 +2,7 @@
 // Created by mhonchar on 21.11.19.
 //
 
-#include "DirectoryMonitor.hpp"
+#include "../includes/DirectoryMonitor.hpp"
 #include <chrono>
 
 const int DirectoryMonitor::MaxEventMonitor = 256;
@@ -35,6 +35,7 @@ DirectoryMonitor &DirectoryMonitor::operator=(DirectoryMonitor const &rhs)
 	this->fileDescriptor = rhs.fileDescriptor;
 	this->watchDescriptor = rhs.watchDescriptor;
 	this->fname = rhs.fname;
+	return (*this);
 }
 
 DirectoryMonitor::DirectoryMonitor(const std::string &path)
@@ -51,16 +52,18 @@ bool DirectoryMonitor::initWatcher()
 	if (fileDescriptor < 0)
 	{
 		syslog (LOG_ERR, "Error while inotify initialization.");
-		throw "Error while inotify initialization.";        //TODO: Replace by own exception
+		syslog (LOG_NOTICE, "Daemon stops.");
+		return false;
 	}
 	watchDescriptor = inotify_add_watch(fileDescriptor, fname.c_str(), IN_CREATE);
 	if (watchDescriptor < 0)
 	{
 		syslog (LOG_ERR, "Error while starting watching folder.");
-		throw "Error while starting watching folder.Hint: check path to folder.";        //TODO: Replace by own exception
+		syslog (LOG_NOTICE, "Daemon stops.");
+		return false;
 	}
 	syslog(LOG_NOTICE, "File watcher initialized successfully.");
-
+	return true;
 }
 
 void	DirectoryMonitor::startWatching(std::mutex &p_mutex, std::list<std::string> &filenames, std::atomic<bool> &isRunning)

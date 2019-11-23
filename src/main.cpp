@@ -1,6 +1,6 @@
 #include <iostream>
-#include "DirectoryMonitor.hpp"
-#include "DbWriter.hpp"
+#include "../includes/DirectoryMonitor.hpp"
+#include "../includes/DbWriter.hpp"
 #include <string>
 #include <syslog.h>
 #include <mutex>
@@ -67,8 +67,8 @@ int main(void)
 	umask(0);
 
 
-	openlog("daemon-monitor", LOG_NOWAIT | LOG_PID, LOG_MAIL);
-	syslog(LOG_NOTICE, "Successfully started foldermonitor");
+	openlog("daemon-foldermonitor", LOG_NOWAIT | LOG_PID, LOG_MAIL);
+	syslog(LOG_NOTICE, "Successfully started daemon-foldermonitor");
 
 	sid = setsid();
 	if(sid < 0)
@@ -89,19 +89,13 @@ int main(void)
 	const int SLEEP_INTERVAL = 5;
 	std::list<std::string> filenames;
 	std::mutex l_mutex;
-	DirectoryMonitor dm("/home/mhonchar/Documents/foldermonitor/monitorme");
-	DBWriter dbw("/home/mhonchar/Documents/foldermonitor/database/foldermonitor.db", "/home/mhonchar/Documents/foldermonitor/monitorme/");
+	DirectoryMonitor dm("/home/deamon/monitorme");
+	DBWriter dbw("/home/deamon/database/foldermonitor.db", "/home/deamon/monitorme/");
 	std::atomic<bool> isRunning;
-	try
-	{
-		dm.initWatcher();
-		dbw.initDBWriter();
-	}
-	catch (std::string e)
-	{
-		std::cout << "Error occured: " << e << std::endl;
-		return (-1);
-	}
+	if (dm.initWatcher() == false)
+		exit(EXIT_FAILURE);
+	if (dbw.initDBWriter() == false)
+		exit(EXIT_FAILURE);
 	isRunning = true;
 	std::thread threadFWatcher
 		( &DirectoryMonitor::startWatching
@@ -119,11 +113,11 @@ int main(void)
 		);
 	while(isRunning)
 	{
-		sleep(1);
+		sleep(SLEEP_INTERVAL);
 	}
 	threadFWatcher.join();
 	threadDBWriter.join();
-	syslog(LOG_NOTICE, "Stopping folderdaemon.");
+	syslog(LOG_NOTICE, "Stopping daemon-foldermonitor.");
 	closelog();
 	exit(EXIT_SUCCESS);
 }

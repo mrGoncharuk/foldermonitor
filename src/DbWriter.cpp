@@ -2,14 +2,15 @@
 // Created by mhonchar on 21.11.19.
 //
 
-#include "DbWriter.hpp"
+#include "../includes/DbWriter.hpp"
 #include <iostream>
 const int DBWriter::threadAmount = 3;
 
 DBWriter::DBWriter(std::string const &dbfilename, std::string const &pathtomon)
-	: dbName(dbfilename)
+	: db(nullptr)
+	, dbName(dbfilename)
 	, pathToMonitor(pathtomon)
-	, db(nullptr)
+
 {
 	syslog(LOG_NOTICE, "Database writer created.");
 }
@@ -18,16 +19,18 @@ DBWriter::~DBWriter()
 {
 	syslog(LOG_NOTICE, "Database writer destroyed.");
 }
-void 	DBWriter::initDBWriter()
+bool 	DBWriter::initDBWriter()
 {
 	int status;
 	status = sqlite3_open(dbName.c_str(), &db);
 	if (status != SQLITE_OK)
 	{
 		syslog(LOG_ERR, "Error occured while opening database.");
-		throw "Error occured while opening database.";
+		syslog(LOG_NOTICE, "Daemon stops.");
+		return false;
 	}
 	syslog(LOG_NOTICE, "Database writer initialized successfully.");
+	return true;
 }
 
 void 	DBWriter::migrateData(const std::string fname, std::atomic<bool> &isDone)

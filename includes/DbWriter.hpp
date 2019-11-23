@@ -27,7 +27,7 @@ private:
 public:
 	DBWriter(std::string const &dbfilename, std::string const &pathtomon);
 	~DBWriter();
-	void 	initDBWriter();
+	bool 	initDBWriter();
 	void	startWriting(std::mutex &p_mutex, std::list<std::string> &filenames, std::atomic<bool> &isRunning);
 	void	migrateData(const std::string fname, std::atomic<bool> &isDone);
 };
