@@ -37,26 +37,17 @@ Open daemon directory. Its already cloned into /home/foldermonitor
 ```bash
 - cd /home/foldermonitor
 ```
+
 Build
-Change devtoolset
-```bash
-- scl enable devtoolset-7 bash
-```
-Start rsyslogd
 ```bash
 - make
 ```
 
 Run
-Change devtoolset
 ```bash
-- scl enable devtoolset-7 bash
+- - ./daemon-foldermonitor
 ```
 
-Start rsyslogd
-```bash
-- ./daemon-foldermonitor
-```
 ## Hints
 If you accidentally deleted your database inside /database/ folder
 ```bash
