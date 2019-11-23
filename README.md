@@ -56,5 +56,5 @@ If you accidentally deleted your database inside /database/ folder
 ```
 Check log
 ```bash
-- cat /var/log/mailog
+- cat /var/log/maillog
 ```
