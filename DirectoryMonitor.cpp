@@ -3,8 +3,9 @@
 //
 
 #include "DirectoryMonitor.hpp"
+#include <chrono>
 
-const int DirectoryMonitor::MaxEventMonitor = 1024;
+const int DirectoryMonitor::MaxEventMonitor = 256;
 const int DirectoryMonitor::MaxFilenameSize = 32;
 const int DirectoryMonitor::MonitorEventSize = sizeof(struct inotify_event);
 const int DirectoryMonitor::BufferSize = MaxEventMonitor * (MonitorEventSize  + MaxFilenameSize);

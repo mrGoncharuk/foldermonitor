@@ -4,6 +4,8 @@
 
 #include "DbWriter.hpp"
 #include <iostream>
+const int DBWriter::threadAmount = 3;
+
 DBWriter::DBWriter(std::string const &dbfilename, std::string const &pathtomon)
 	: dbName(dbfilename)
 	, pathToMonitor(pathtomon)
@@ -21,11 +23,17 @@ void 	DBWriter::initDBWriter()
 	int status;
 	status = sqlite3_open(dbName.c_str(), &db);
 	if (status != SQLITE_OK)
+	{
+		syslog(LOG_ERR, "Error occured while opening database.");
 		throw "Error occured while opening database.";
+	}
+	syslog(LOG_NOTICE, "Database writer initialized successfully.");
 }
 
-void 	DBWriter::migrateData(const std::string &fname)
+void 	DBWriter::migrateData(const std::string fname, std::atomic<bool> &isDone)
 {
+	int ret;
+	char *errmsg;
 	std::ifstream ifs(fname.c_str());
 	std::string query = "INSERT INTO filedata VALUES('";
 	if (ifs)
@@ -38,26 +46,58 @@ void 	DBWriter::migrateData(const std::string &fname)
 		std::getline(ifs, data, ':'); // get value
 		query += data;
 		query += "');";
+		ifs.close();
+		std::lock_guard<std::mutex> lock(dbMutex);
+		ret = sqlite3_exec(db, query.c_str(), nullptr, nullptr, &errmsg);
+		if (ret == SQLITE_OK)
+			syslog(LOG_NOTICE, "Data from file <%s> migrated to database successfully.", fname.c_str());
+		else
+		{
+			syslog(LOG_ERR, "Error while migrating data from <%s>. Query: [%s]. Error message: %s.", fname.c_str(), query.c_str(), errmsg);
+			sqlite3_free(errmsg);
+		}
 	}
 	else
 		syslog(LOG_ERR, "Error while opening file <%s>", fname.c_str());
-
-	sqlite3_exec(db, query.c_str(), nullptr, nullptr, nullptr);
-	std::cout << query;
+	isDone = true;
 }
 
 void	DBWriter::startWriting(std::mutex &list_mutex, std::list<std::string> &filenames, std::atomic<bool> &isRunning)
 {
 	std::string currFileName;
+	std::thread migrateThreads[threadAmount];
+	std::atomic<bool> isThreadFinished[threadAmount];
 
+	int i = 0;
+	while (i < threadAmount)
+	{
+		std::lock_guard<std::mutex> lock(list_mutex);
+		if (!filenames.empty())
+		{
+			isThreadFinished[i] = false;
+			migrateThreads[i] = std::thread(&DBWriter::migrateData, std::ref(*this), pathToMonitor + filenames.front(),
+											std::ref(isThreadFinished[i]));
+			syslog(LOG_NOTICE, "Start processing <%s>.", filenames.front().c_str());
+			filenames.pop_front();
+			i++;
+		}
+	}
 	while (isRunning)
 	{
-		if (filenames.empty() == false)
+		for (int i = 0; i < threadAmount; i++)
 		{
-			std::lock_guard<std::mutex> lock(list_mutex);
-			currFileName = filenames.front();
-			filenames.pop_front();
-			migrateData(pathToMonitor + currFileName);
+			if (isThreadFinished[i])
+			{
+				std::lock_guard<std::mutex> lock(list_mutex);
+				if (!filenames.empty())
+				{
+					migrateThreads[i].join();
+					migrateThreads[i] = std::thread(&DBWriter::migrateData, std::ref(*this), pathToMonitor + filenames.front(),
+											  std::ref(isThreadFinished[i]));
+					syslog(LOG_NOTICE, "Start processing <%s>.", filenames.front().c_str());
+					filenames.pop_front();
+				}
+			}
 		}
 	}
 }

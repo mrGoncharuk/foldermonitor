@@ -7,12 +7,12 @@
 #include <list>
 #include <atomic>
 #include <sys/stat.h>
-
+/*
 int main()
 {
 	std::list<std::string> filenames;
 	std::mutex l_mutex;
-	DirectoryMonitor dm("/home/mhonchar/Documents/foldermonitor/monitorme");
+	DirectoryMonitor dm("/home/mhonchar/Documents/foldermonitor/monitorme/");
 	DBWriter dbw("/home/mhonchar/Documents/foldermonitor/database/foldermonitor.db", "/home/mhonchar/Documents/foldermonitor/monitorme/");
 	std::atomic<bool> isRunning;
 	try
@@ -40,15 +40,16 @@ int main()
 		, std::ref(filenames)
 		, std::ref(isRunning)
 		);
-	int a;
-	std::cin >> a;
+
+	dbw.startWriting(l_mutex, filenames, isRunning);
+
 	isRunning = false;
-	threadFWatcher.detach();
-	threadDBWriter.detach();
+	threadFWatcher.join();
+	threadDBWriter.join();
 	return 0;
 }
+*/
 
-/*
 // For security purposes, we don't allow any arguments to be passed into the daemon
 int main(void)
 {
@@ -85,7 +86,6 @@ int main(void)
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);
 
-
 	const int SLEEP_INTERVAL = 5;
 	std::list<std::string> filenames;
 	std::mutex l_mutex;
@@ -117,30 +117,13 @@ int main(void)
 			, std::ref(filenames)
 			, std::ref(isRunning)
 		);
-	int a;
-	std::cin >> a;
-	isRunning = false;
-	threadFWatcher.detach();
-	threadDBWriter.detach();
-	// Enter daemon loop
-	while(1)
+	while(isRunning)
 	{
-		// Execute daemon heartbeat, where your recurring activity occurs
-		for (int i = 0; i < 1000000; i++)
-			i++;
-		// Sleep for a period of time
-		sleep(SLEEP_INTERVAL);
-		syslog(LOG_NOTICE, "End of loopa");
-		syslog(LOG_ALERT, "Alert log");
-		syslog(LOG_DAEMON, "Deamon_LOGggg");
-		syslog(LOG_SYSLOG, "syslog log");
+		sleep(1);
 	}
-
-	// Close system logs for the child process
-	syslog(LOG_NOTICE, "Stopping daemon-name");
+	threadFWatcher.join();
+	threadDBWriter.join();
+	syslog(LOG_NOTICE, "Stopping folderdaemon.");
 	closelog();
-
-	// Terminate the child process when the daemon completes
 	exit(EXIT_SUCCESS);
 }
-*/
