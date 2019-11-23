@@ -5,10 +5,16 @@ MAINTAINER The CentOS Project <cloud-ops@centos.org>
 RUN yum -y install git
 RUN yum -y install gcc-c++
 RUN yum -y install vim
-#sudo apt-get install sqlite3 libsqlite3-dev
-RUN git clone https://github.com/mrGoncharuk/foldermonitor.git home/deamon
-#cat db_creation_script.sql | sqlite3 foldermonitor.db
-RUN cd home/deamon
+RUN yum -y install sqlite-devel.x86_64
+RUN yum -y install centos-release-scl
+RUN yum -y install rsyslog
+RUN yum -y install -y devtoolset-7
+RUN scl enable devtoolset-7 bash
+RUN git clone https://github.com/mrGoncharuk/foldermonitor.git /home/foldermonitor
+RUN cd /home/foldermonitor/database
+RUN cat db_creation_script.sql | sqlite3 foldermonitor.db
+RUN rsyslogd
+RUN cd ..
 RUN make
 # RUN ./folderdeamon
 

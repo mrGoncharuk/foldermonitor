@@ -7,50 +7,8 @@
 #include <list>
 #include <atomic>
 #include <sys/stat.h>
-/*
-int main()
-{
-	std::list<std::string> filenames;
-	std::mutex l_mutex;
-	DirectoryMonitor dm("/home/mhonchar/Documents/foldermonitor/monitorme/");
-	DBWriter dbw("/home/mhonchar/Documents/foldermonitor/database/foldermonitor.db", "/home/mhonchar/Documents/foldermonitor/monitorme/");
-	std::atomic<bool> isRunning;
-	try
-	{
-		dm.initWatcher();
-		dbw.initDBWriter();
-	}
-	catch (std::string e)
-	{
-		std::cout << "Error occured: " << e << std::endl;
-		return (-1);
-	}
-	isRunning = true;
-	std::thread threadFWatcher
-		( &DirectoryMonitor::startWatching
-		, std::ref(dm)
-		, std::ref(l_mutex)
-		, std::ref(filenames)
-		, std::ref(isRunning)
-		);
-	std::thread threadDBWriter
-		( &DBWriter::startWriting
-		, std::ref(dbw)
-		, std::ref(l_mutex)
-		, std::ref(filenames)
-		, std::ref(isRunning)
-		);
 
-	dbw.startWriting(l_mutex, filenames, isRunning);
 
-	isRunning = false;
-	threadFWatcher.join();
-	threadDBWriter.join();
-	return 0;
-}
-*/
-
-// For security purposes, we don't allow any arguments to be passed into the daemon
 int main(void)
 {
 	pid_t pid, sid;
@@ -89,8 +47,8 @@ int main(void)
 	const int SLEEP_INTERVAL = 5;
 	std::list<std::string> filenames;
 	std::mutex l_mutex;
-	DirectoryMonitor dm("/home/deamon/monitorme");
-	DBWriter dbw("/home/deamon/database/foldermonitor.db", "/home/deamon/monitorme/");
+	DirectoryMonitor dm("/home/foldermonitor/monitorme");
+	DBWriter dbw("/home/foldermonitor/database/foldermonitor.db", "/home/foldermonitor/monitorme/");
 	std::atomic<bool> isRunning;
 	if (dm.initWatcher() == false)
 		exit(EXIT_FAILURE);
