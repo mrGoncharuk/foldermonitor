@@ -45,15 +45,23 @@ Build
 
 Run
 ```bash
-- - ./daemon-foldermonitor
+- ./daemon-foldermonitor
 ```
 
 ## Hints
-If you accidentally deleted your database inside /database/ folder
+Check database records
 ```bash
-- cd database
+- cd foldermonitor/database
+- sqlite3 foldermonitor.db
+- select * from filedata
+```
+
+If you accidentally deleted your database you can easily restore it.
+```bash
+- cd foldermonitor/database
 - cat db_creation_script.sql | sqlite3 foldermonitor.db
 ```
+
 Check log
 ```bash
 - cat /var/log/maillog
