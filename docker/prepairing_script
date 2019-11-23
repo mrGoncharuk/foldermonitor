@@ -1,0 +1,6 @@
+#bin/bash
+
+mkdir /home/foldermonitor/monitorme
+cat /home/foldermonitor/database/db_creation_script.sql | sqlite3 /home/foldermonitor/database/foldermonitor.db
+scl enable devtoolset-7 bash
+make -C /home/foldermonitor
