@@ -19,7 +19,7 @@ Build docker image
 ```
 After building start docker container
 ```bash
-- sudo docker --name <ContainerName> -it <ImageName> bash
+- sudo docker run --name <ContainerName> -it <ImageName> bash
 ```
 ## Prepairing system to start daemon
 
