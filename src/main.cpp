@@ -46,8 +46,8 @@ int main(void)
 
 	std::list<std::string> filenames;
 	std::mutex l_mutex;
-	const std::string watching_folder = "/home/mhonchar/Documents/fm_test/monitorme/";
-	const std::string database_folder = "/home/mhonchar/Documents/fm_test/database/foldermonitor.db";
+	const std::string watching_folder = "/home/foldermonitor/monitorme/";
+	const std::string database_folder = "/home/foldermonitor/database/foldermonitor.db";
 
 	DirectoryMonitor dm(watching_folder);
 	DBWriter dbw(database_folder, watching_folder);
