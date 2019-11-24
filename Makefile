@@ -19,7 +19,7 @@ HEADERS = 		$(INC_DIR)DbWriter.hpp \
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(SRC_FILES:.cpp=.o))
 
-CC = g++ -std=c++11
+CC = /opt/rh/devtoolset-2/root/usr/bin/g++ -std=c++11
 CFLAGS = -Wall -Werror -Wextra
 INC = 	-I $(INC_DIR)
 

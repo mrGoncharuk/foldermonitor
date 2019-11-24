@@ -21,10 +21,11 @@ RUN yum -y install devtoolset-2-gcc devtoolset-2-binutils devtoolset-2-gcc-c++
 # CMD scl enable devtoolset-2 bash
 WORKDIR /home/foldermonitor
 RUN ls /opt/rh
-# RUN /opt/tools/rh/devtools-2/root/usr/bin/g++ --version
+
 RUN rm -rf /home/foldermonitor
 RUN git clone https://github.com/mrGoncharuk/foldermonitor.git /home/foldermonitor
-RUN ls /opt/rh
+# RUN ls /opt/rh
+RUN /opt/rh/devtoolset-2/root/usr/bin/g++ --version
 RUN echo "source /opt/rh/devtoolset-2/enable" >> ~/.bashrc
 # RUN source /opt/rh/devtoolset-2/enable
 # RUN scl enable devtoolset-7 bash
