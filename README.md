@@ -66,3 +66,15 @@ Check log
 ```bash
 - cat /var/log/maillog
 ```
+
+If daemon doesn't compile(make: g++: Command not found), change devtoolset.
+```bash
+- scl enable devtoolset-7 bash
+```
+
+If you don't see any logs in /var/log/maillog, start rsyslogd
+```bash
+- rsyslogd
+```
+
+
