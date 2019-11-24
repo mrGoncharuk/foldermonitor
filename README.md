@@ -67,7 +67,7 @@ Check log
 - cat /var/log/maillog
 ```
 
-If daemon doesn't compile run(make: g++: Command not found), change devtoolset
+If daemon doesn't compile(make: g++: Command not found), change devtoolset.
 ```bash
 - scl enable devtoolset-7 bash
 ```
