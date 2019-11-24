@@ -14,7 +14,7 @@
 # include <thread>
 # include <syslog.h>
 # include "sqlite3.h"
-
+# include "FileReader.hpp"
 class DBWriter
 {
 private:
@@ -29,7 +29,7 @@ public:
 	~DBWriter();
 	bool 	initDBWriter();
 	void	startWriting(std::mutex &p_mutex, std::list<std::string> &filenames, std::atomic<bool> &isRunning);
-	void	migrateData(const std::string fname, std::atomic<bool> &isDone);
+	void	sendQuery(const std::string &fname, std::atomic<bool> &isDone);
 };
 
 

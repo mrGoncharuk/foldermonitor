@@ -18,7 +18,7 @@ DirectoryMonitor::DirectoryMonitor()
 
 DirectoryMonitor::~DirectoryMonitor()
 {
-	syslog(LOG_NOTICE, "File watcher destroyed.");
+	syslog(LOG_NOTICE, "DM> File watcher destroyed.");
 	if (fileDescriptor > 0 && watchDescriptor > 0)
 		inotify_rm_watch(fileDescriptor, watchDescriptor);
 	if (fileDescriptor > 0)
@@ -43,7 +43,7 @@ DirectoryMonitor::DirectoryMonitor(const std::string &path)
 	, watchDescriptor(-1)
 	, fname(path)
 {
-	syslog(LOG_NOTICE, "File watcher created.");
+	syslog(LOG_NOTICE, "DM> File watcher created.");
 }
 
 bool DirectoryMonitor::initWatcher()
@@ -51,18 +51,18 @@ bool DirectoryMonitor::initWatcher()
 	fileDescriptor = inotify_init();
 	if (fileDescriptor < 0)
 	{
-		syslog (LOG_ERR, "Error while inotify initialization.");
-		syslog (LOG_NOTICE, "Daemon stops.");
+		syslog (LOG_ERR, "DM> Error while inotify initialization.");
+		syslog (LOG_NOTICE, "DM> Daemon stops.");
 		return false;
 	}
 	watchDescriptor = inotify_add_watch(fileDescriptor, fname.c_str(), IN_CREATE);
 	if (watchDescriptor < 0)
 	{
-		syslog (LOG_ERR, "Error while starting watching folder.");
-		syslog (LOG_NOTICE, "Daemon stops.");
+		syslog (LOG_ERR, "DM> Error while starting watching folder.");
+		syslog (LOG_NOTICE, "DM> Daemon stops.");
 		return false;
 	}
-	syslog(LOG_NOTICE, "File watcher initialized successfully.");
+	syslog(LOG_NOTICE, "DM> File watcher initialized successfully.");
 	return true;
 }
 
@@ -76,7 +76,7 @@ void	DirectoryMonitor::startWatching(std::mutex &p_mutex, std::list<std::string>
 		i = 0;
 		total_read = read(fileDescriptor, buffer, BufferSize);
 		if (total_read < 0)
-			syslog (LOG_ERR, "Error while reading folder events.");
+			syslog (LOG_ERR, "DM> Error while reading folder events.");
 		while (i < total_read)
 		{
 			inotify_event *event = reinterpret_cast<inotify_event *>(buffer + i);
@@ -85,7 +85,7 @@ void	DirectoryMonitor::startWatching(std::mutex &p_mutex, std::list<std::string>
 				if (!(event->mask & IN_ISDIR))
 				{
 					std::lock_guard<std::mutex> lock(p_mutex);
-					syslog (LOG_INFO, "File created <%s>", event->name);
+					syslog (LOG_INFO, "DM> File created <%s>", event->name);
 
 					filenames.push_back(event->name);
 				}

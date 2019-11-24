@@ -8,7 +8,6 @@
 #include <atomic>
 #include <sys/stat.h>
 
-
 int main(void)
 {
 	pid_t pid, sid;
@@ -44,11 +43,14 @@ int main(void)
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);
 
-	const int SLEEP_INTERVAL = 5;
+
 	std::list<std::string> filenames;
 	std::mutex l_mutex;
-	DirectoryMonitor dm("/home/foldermonitor/monitorme");
-	DBWriter dbw("/home/foldermonitor/database/foldermonitor.db", "/home/foldermonitor/monitorme/");
+	const std::string watching_folder = "/home/mhonchar/Documents/fm_test/monitorme/";
+	const std::string database_folder = "/home/mhonchar/Documents/fm_test/database/foldermonitor.db";
+
+	DirectoryMonitor dm(watching_folder);
+	DBWriter dbw(database_folder, watching_folder);
 	std::atomic<bool> isRunning;
 	if (dm.initWatcher() == false)
 		exit(EXIT_FAILURE);
@@ -62,19 +64,9 @@ int main(void)
 			, std::ref(filenames)
 			, std::ref(isRunning)
 		);
-	std::thread threadDBWriter
-		( &DBWriter::startWriting
-			, std::ref(dbw)
-			, std::ref(l_mutex)
-			, std::ref(filenames)
-			, std::ref(isRunning)
-		);
-	while(isRunning)
-	{
-		sleep(SLEEP_INTERVAL);
-	}
+
+	dbw.startWriting(l_mutex, filenames, isRunning);
 	threadFWatcher.join();
-	threadDBWriter.join();
 	syslog(LOG_NOTICE, "Stopping daemon-foldermonitor.");
 	closelog();
 	exit(EXIT_SUCCESS);
