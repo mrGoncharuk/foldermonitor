@@ -18,14 +18,13 @@
 class DBWriter
 {
 private:
-	DBWriter();
 	sqlite3* db;
 	std::string dbName;
 	std::string pathToMonitor;
-	static const int threadAmount;
+	const int threadAmount;
 	std::mutex dbMutex;
 public:
-	DBWriter(std::string const &dbfilename, std::string const &pathtomon);
+	explicit DBWriter(std::string const &dbfilename, std::string const &pathtomon);
 	~DBWriter();
 	bool 	initDBWriter();
 	void	startWriting(std::mutex &p_mutex, std::list<std::string> &filenames, std::atomic<bool> &isRunning);

@@ -23,15 +23,10 @@ private:
 	std::string	fname;
 
 public:
-	DirectoryMonitor(const std::string &path);
+	explicit DirectoryMonitor(const std::string &path);
 	~DirectoryMonitor();
 	void startWatching(std::mutex &list_mutex, std::list<std::string> &filenames, std::atomic<bool> &isRunning);
 	bool initWatcher();
-
-private:
-	DirectoryMonitor();
-	DirectoryMonitor(DirectoryMonitor const &rhs);
-	DirectoryMonitor &operator=(DirectoryMonitor const &rhs);
 
 public:
 	static const int MaxEventMonitor;

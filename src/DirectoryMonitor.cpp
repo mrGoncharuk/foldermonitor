@@ -10,12 +10,6 @@ const int DirectoryMonitor::MaxFilenameSize = 32;
 const int DirectoryMonitor::MonitorEventSize = sizeof(struct inotify_event);
 const int DirectoryMonitor::BufferSize = MaxEventMonitor * (MonitorEventSize  + MaxFilenameSize);
 
-DirectoryMonitor::DirectoryMonitor()
-	: fileDescriptor(-1)
-	, watchDescriptor(-1)
-	, fname("")
-{}
-
 DirectoryMonitor::~DirectoryMonitor()
 {
 	syslog(LOG_NOTICE, "DM> File watcher destroyed.");
@@ -23,19 +17,6 @@ DirectoryMonitor::~DirectoryMonitor()
 		inotify_rm_watch(fileDescriptor, watchDescriptor);
 	if (fileDescriptor > 0)
 		close(fileDescriptor);
-}
-
-DirectoryMonitor::DirectoryMonitor(DirectoryMonitor const &rhs)
-{
-	*this = rhs;
-}
-
-DirectoryMonitor &DirectoryMonitor::operator=(DirectoryMonitor const &rhs)
-{
-	this->fileDescriptor = rhs.fileDescriptor;
-	this->watchDescriptor = rhs.watchDescriptor;
-	this->fname = rhs.fname;
-	return (*this);
 }
 
 DirectoryMonitor::DirectoryMonitor(const std::string &path)

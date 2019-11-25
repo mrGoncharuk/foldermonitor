@@ -6,12 +6,21 @@
 #include <iostream>
 #include <sstream>
 
-const int DBWriter::threadAmount = 3;
+static int		countThreadAmount()
+{
+	int thrds = std::thread::hardware_concurrency();
+	syslog(LOG_NOTICE, "There are %d threads available in system.", thrds);
+	if (thrds <= 2)
+		return (1);
+	else
+		return (thrds - 2);
+}
 
 DBWriter::DBWriter(std::string const &dbfilename, std::string const &pathtomon)
 	: db(nullptr)
 	, dbName(dbfilename)
 	, pathToMonitor(pathtomon)
+	, threadAmount(countThreadAmount())
 
 {
 	syslog(LOG_NOTICE, "DW> Database writer created.");
@@ -64,32 +73,53 @@ void	DBWriter::startWriting(std::mutex &list_mutex, std::list<std::string> &file
 	std::atomic<bool> isThreadFinished[threadAmount];
 	int i = 0;
 
-	while (i < threadAmount && isRunning)
+	if (threadAmount == 1)
 	{
-		std::lock_guard<std::mutex> lock(list_mutex);
-		if (!filenames.empty())
+		while (isRunning)
 		{
-			isThreadFinished[i] = false;
-			migrateThreads[i] = std::thread(&DBWriter::sendQuery, std::ref(*this), pathToMonitor + filenames.front(),
-											std::ref(isThreadFinished[i]));
-			filenames.pop_front();
-			i++;
+			list_mutex.lock();
+			if (filenames.empty())
+				list_mutex.unlock();
+			else
+			{
+				currFileName = pathToMonitor + filenames.front();
+				filenames.pop_front();
+				list_mutex.unlock();
+				sendQuery(currFileName, isThreadFinished[0]);
+			}
 		}
 	}
-	while (isRunning)
+	else
 	{
-		for (i = 0; i < threadAmount; i++)
+		while (i < threadAmount && isRunning)
 		{
-			if (isThreadFinished[i])
+			std::lock_guard<std::mutex> lock(list_mutex);
+			if (!filenames.empty())
 			{
-				std::lock_guard<std::mutex> lock(list_mutex);
-				if (!filenames.empty())
+				isThreadFinished[i] = false;
+				migrateThreads[i] = std::thread(&DBWriter::sendQuery, std::ref(*this),
+												pathToMonitor + filenames.front(),
+												std::ref(isThreadFinished[i]));
+				filenames.pop_front();
+				i++;
+			}
+		}
+		while (isRunning)
+		{
+			for (i = 0; i < threadAmount; i++)
+			{
+				if (isThreadFinished[i])
 				{
-					migrateThreads[i].join();
-					isThreadFinished[i] = false;
-					migrateThreads[i] = std::thread(&DBWriter::sendQuery, std::ref(*this), pathToMonitor + filenames.front(),
-											  std::ref(isThreadFinished[i]));
-					filenames.pop_front();
+					std::lock_guard<std::mutex> lock(list_mutex);
+					if (!filenames.empty())
+					{
+						migrateThreads[i].join();
+						isThreadFinished[i] = false;
+						migrateThreads[i] = std::thread(&DBWriter::sendQuery, std::ref(*this),
+														pathToMonitor + filenames.front(),
+														std::ref(isThreadFinished[i]));
+						filenames.pop_front();
+					}
 				}
 			}
 		}
