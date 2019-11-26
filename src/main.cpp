@@ -8,6 +8,8 @@
 #include <list>
 #include <atomic>
 #include <sys/stat.h>
+#include <sys/types.h>
+#include <sys/file.h>
 
 static unsigned int		countThreadAmount()
 {
@@ -19,7 +21,7 @@ static unsigned int		countThreadAmount()
 		return (threads - 2);
 }
 
-int main(void)
+int	daemonize()
 {
 	pid_t pid, sid;
 
@@ -34,9 +36,8 @@ int main(void)
 	}
 	umask(0);
 
-
 	openlog("daemon-foldermonitor", LOG_NOWAIT | LOG_PID, LOG_MAIL);
-	syslog(LOG_NOTICE, "Successfully started daemon-foldermonitor");
+	syslog(LOG_NOTICE, "Staring daemon-foldermonitor...");
 
 	sid = setsid();
 	if(sid < 0)
@@ -50,16 +51,40 @@ int main(void)
 		syslog(LOG_ERR, "Could not change working directory to /");
 		exit(EXIT_FAILURE);
 	}
+
+
+	const char *pidfile = "/var/run/daemon-foldermonitor.pid";
+	int pidFilehandle = open(pidfile, O_RDWR | O_CREAT, 0666);
+	if (pidFilehandle == -1 )
+	{
+		syslog(LOG_INFO, "Could not open PID lock file %s, exiting", pidfile);
+		exit(EXIT_FAILURE);
+	}
+	int fr = flock(pidFilehandle, LOCK_EX | LOCK_NB);
+	if (fr < 0)
+	{
+		syslog(LOG_INFO, "Daemon already running. Terminating current daemon with pid <%d>.", getpid());
+		exit(EXIT_FAILURE);
+	}
+	std::string strpid = std::to_string(getpid());
+	write(pidFilehandle, strpid.c_str(), strpid.length());
+	
 	close(STDIN_FILENO);
 	close(STDOUT_FILENO);
 	close(STDERR_FILENO);
+	return pidFilehandle;
+}
 
+int main(void)
+{
+	int	pidfilehandle;
+	pidfilehandle = daemonize();
 
 	std::list<std::string> filenames;
 	std::atomic<bool> isRunning;
 	std::mutex l_mutex;
-	const std::string watching_folder = "/home/mhonchar/Documents/fm_test/monitorme/";
-	const std::string database_folder = "/home/mhonchar/Documents/fm_test/database/foldermonitor.db";
+	const std::string watching_folder = "/home/foldermonitor/monitorme/";
+	const std::string database_folder = "/home/foldermonitor/database/foldermonitor.db";
 	DirectoryMonitor dm(watching_folder);
 	DBWriter *dbw = new DBWriter(database_folder);
 	MigrationManager migManager(dbw, countThreadAmount());
@@ -82,6 +107,7 @@ int main(void)
 	dbw->closeDB();
 	delete dbw;
 	syslog(LOG_NOTICE, "Stopping daemon-foldermonitor.");
+	close(pidfilehandle);
 	closelog();
 	exit(EXIT_SUCCESS);
 }
