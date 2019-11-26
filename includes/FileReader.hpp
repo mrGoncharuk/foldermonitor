@@ -15,9 +15,7 @@ class FileReader
 public:
 	FileReader();
 	~FileReader();
-	static void extractData(const std::string &fname,
-							std::string &key,
-							std::string &value);
+	static std::string extractData(const std::string &fname);
 };
 
 

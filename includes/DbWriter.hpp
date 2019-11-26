@@ -13,23 +13,23 @@
 # include <mutex>
 # include <thread>
 # include <syslog.h>
-# include "sqlite3.h"
+# include <sqlite3.h>
 # include "FileReader.hpp"
-class DBWriter
+#include "IDB.hpp"
+
+class DBWriter: public IDB
 {
 private:
-	sqlite3* db;
+
+	sqlite3 *db;
 	std::string dbName;
-	std::string pathToMonitor;
-	const int threadAmount;
 	std::mutex dbMutex;
 public:
-	explicit DBWriter(std::string const &dbfilename, std::string const &pathtomon);
-	~DBWriter();
-	bool 	initDBWriter();
-	void	startWriting(std::mutex &p_mutex, std::list<std::string> &filenames, std::atomic<bool> &isRunning);
-	void	sendQuery(const std::string &fname, std::atomic<bool> &isDone);
+	explicit DBWriter(std::string const &dbfilename);
+	virtual ~DBWriter();
+	bool 	initDB() override;
+	void	executeQuery(const std::string &query) override;
+	void 	closeDB() override;
 };
-
 
 #endif //FOLDERMONITORING_DBWRITER_HPP

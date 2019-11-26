@@ -4,24 +4,10 @@
 
 #include "../includes/DbWriter.hpp"
 #include <iostream>
-#include <sstream>
 
-static int		countThreadAmount()
-{
-	int thrds = std::thread::hardware_concurrency();
-	syslog(LOG_NOTICE, "There are %d threads available in system.", thrds);
-	if (thrds <= 2)
-		return (1);
-	else
-		return (thrds - 2);
-}
-
-DBWriter::DBWriter(std::string const &dbfilename, std::string const &pathtomon)
+DBWriter::DBWriter(std::string const &dbfilename)
 	: db(nullptr)
 	, dbName(dbfilename)
-	, pathToMonitor(pathtomon)
-	, threadAmount(countThreadAmount())
-
 {
 	syslog(LOG_NOTICE, "DW> Database writer created.");
 }
@@ -30,10 +16,11 @@ DBWriter::~DBWriter()
 {
 	syslog(LOG_NOTICE, "DW> Database writer destroyed.");
 }
-bool 	DBWriter::initDBWriter()
+bool 	DBWriter::initDB()
 {
 	int status;
-	status = sqlite3_open(dbName.c_str(), &db);
+
+	status = sqlite3_open(dbName.c_str(), reinterpret_cast<sqlite3 **>(&db));
 	if (status != SQLITE_OK)
 	{
 		syslog(LOG_ERR, "DW> Error occured while opening database.");
@@ -44,86 +31,24 @@ bool 	DBWriter::initDBWriter()
 	return true;
 }
 
-void 	DBWriter::sendQuery(const std::string &fname, std::atomic<bool> &isDone)
+void 	DBWriter::executeQuery(const std::string &query)
 {
-	std::string key, value;
-	std::stringstream ss;
 	int ret;
 	char *errmsg;
 
-	FileReader::extractData(fname, key, value);
-	ss << "INSERT INTO filedata VALUES('" << key << "','" << value << "');";
-
 	std::lock_guard<std::mutex> lock(dbMutex);
-	ret = sqlite3_exec(db, ss.str().c_str(), nullptr, nullptr, &errmsg);
+	ret = sqlite3_exec(db, query.c_str(), nullptr, nullptr, &errmsg);
 	if (ret == SQLITE_OK)
-		syslog(LOG_NOTICE, "DW> Query with <%s> data done successfully.", fname.c_str());
+		syslog(LOG_NOTICE, "DW> Query executed successfully.");
 	else
 	{
-		syslog(LOG_ERR, "DW> Error while migrating data from <%s>. Query: [%s]. Error message: %s.", fname.c_str(), ss.str().c_str(), errmsg);
+		syslog(LOG_ERR, "DW> Error while migrating data from. Query: [%s]. Error message: %s.", query.c_str(), errmsg);
 		sqlite3_free(errmsg);
 	}
-	isDone = true;
 }
 
-void	DBWriter::startWriting(std::mutex &list_mutex, std::list<std::string> &filenames, std::atomic<bool> &isRunning)
+void 	DBWriter::closeDB()
 {
-	std::string currFileName;
-	std::thread migrateThreads[threadAmount];
-	std::atomic<bool> isThreadFinished[threadAmount];
-	int i = 0;
-
-	if (threadAmount == 1)
-	{
-		while (isRunning)
-		{
-			list_mutex.lock();
-			if (filenames.empty())
-				list_mutex.unlock();
-			else
-			{
-				currFileName = pathToMonitor + filenames.front();
-				filenames.pop_front();
-				list_mutex.unlock();
-				sendQuery(currFileName, isThreadFinished[0]);
-			}
-		}
-	}
-	else
-	{
-		while (i < threadAmount && isRunning)
-		{
-			std::lock_guard<std::mutex> lock(list_mutex);
-			if (!filenames.empty())
-			{
-				isThreadFinished[i] = false;
-				migrateThreads[i] = std::thread(&DBWriter::sendQuery, std::ref(*this),
-												pathToMonitor + filenames.front(),
-												std::ref(isThreadFinished[i]));
-				filenames.pop_front();
-				i++;
-			}
-		}
-		while (isRunning)
-		{
-			for (i = 0; i < threadAmount; i++)
-			{
-				if (isThreadFinished[i])
-				{
-					std::lock_guard<std::mutex> lock(list_mutex);
-					if (!filenames.empty())
-					{
-						migrateThreads[i].join();
-						isThreadFinished[i] = false;
-						migrateThreads[i] = std::thread(&DBWriter::sendQuery, std::ref(*this),
-														pathToMonitor + filenames.front(),
-														std::ref(isThreadFinished[i]));
-						filenames.pop_front();
-					}
-				}
-			}
-		}
-	}
+	sqlite3_close(db);
+	syslog(LOG_NOTICE, "DW> Database closed.");
 }
-
-

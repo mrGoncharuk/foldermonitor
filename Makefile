@@ -10,11 +10,14 @@ LIB = 	-l sqlite3 -pthread
 SRC_FILES =		main.cpp \
 				DbWriter.cpp \
 				DirectoryMonitor.cpp \
-				FileReader.cpp
+				FileReader.cpp \
+				MigrationManager.cpp
 
 HEADERS = 		$(INC_DIR)DbWriter.hpp \
 				$(INC_DIR)DirectoryMonitor.hpp \
-				$(INC_DIR)FileReader.hpp
+				$(INC_DIR)FileReader.hpp \
+				$(INC_DIR)IDB.hpp \
+				$(INC_DIR)MigrationManager.hpp
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR), $(SRC_FILES:.cpp=.o))

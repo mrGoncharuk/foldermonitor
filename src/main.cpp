@@ -1,12 +1,23 @@
 #include <iostream>
 #include "../includes/DirectoryMonitor.hpp"
 #include "../includes/DbWriter.hpp"
+#include "../includes/MigrationManager.hpp"
 #include <string>
 #include <syslog.h>
 #include <mutex>
 #include <list>
 #include <atomic>
 #include <sys/stat.h>
+
+static unsigned int		countThreadAmount()
+{
+	unsigned int threads = std::thread::hardware_concurrency();
+	syslog(LOG_NOTICE, "There are %d threads available in system.", threads);
+	if (threads <= 3)
+		return (1);
+	else
+		return (threads - 2);
+}
 
 int main(void)
 {
@@ -45,18 +56,20 @@ int main(void)
 
 
 	std::list<std::string> filenames;
-	std::mutex l_mutex;
-	const std::string watching_folder = "/home/mhonchar/Documents/foldermonitor/monitorme/";
-	const std::string database_folder = "/home/mhonchar/Documents/foldermonitor/database/foldermonitor.db";
-
-	DirectoryMonitor dm(watching_folder);
-	DBWriter dbw(database_folder, watching_folder);
 	std::atomic<bool> isRunning;
+	std::mutex l_mutex;
+	const std::string watching_folder = "/home/mhonchar/Documents/fm_test/monitorme/";
+	const std::string database_folder = "/home/mhonchar/Documents/fm_test/database/foldermonitor.db";
+	DirectoryMonitor dm(watching_folder);
+	DBWriter *dbw = new DBWriter(database_folder);
+	MigrationManager migManager(dbw, countThreadAmount());
+
 	if (dm.initWatcher() == false)
 		exit(EXIT_FAILURE);
-	if (dbw.initDBWriter() == false)
+	if (dbw->initDB() == false)
 		exit(EXIT_FAILURE);
 	isRunning = true;
+
 	std::thread threadFWatcher
 		( &DirectoryMonitor::startWatching
 			, std::ref(dm)
@@ -64,9 +77,10 @@ int main(void)
 			, std::ref(filenames)
 			, std::ref(isRunning)
 		);
-
-	dbw.startWriting(l_mutex, filenames, isRunning);
+	migManager.migrateData(l_mutex, filenames, isRunning);
 	threadFWatcher.join();
+	dbw->closeDB();
+	delete dbw;
 	syslog(LOG_NOTICE, "Stopping daemon-foldermonitor.");
 	closelog();
 	exit(EXIT_SUCCESS);

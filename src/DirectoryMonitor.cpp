@@ -3,7 +3,6 @@
 //
 
 #include "../includes/DirectoryMonitor.hpp"
-#include <chrono>
 
 const int DirectoryMonitor::MaxEventMonitor = 256;
 const int DirectoryMonitor::MaxFilenameSize = 32;
@@ -68,10 +67,11 @@ void	DirectoryMonitor::startWatching(std::mutex &p_mutex, std::list<std::string>
 					std::lock_guard<std::mutex> lock(p_mutex);
 					syslog (LOG_INFO, "DM> File created <%s>", event->name);
 
-					filenames.push_back(event->name);
+					filenames.push_back(fname + event->name);
 				}
 			}
 			i += MonitorEventSize + event->len;
 		}
 	}
+	syslog(LOG_NOTICE, "DM> Monitoring of <%s> stops.", fname.c_str());
 }
