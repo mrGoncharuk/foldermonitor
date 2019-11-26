@@ -1,4 +1,5 @@
 # foldermonitor
+### Foldermonitor is daemon program which monitors chosen folder and writes parsed data of files created inside it to database.
 
 ## Installation
 Clone repository
@@ -21,7 +22,7 @@ After building start docker container
 ```bash
 - sudo docker run --name <ContainerName> -it <ImageName>:<ImageTag> bash
 ```
-## Prepairing system to start daemon
+## Prepairing system in docker to start daemon
 
 Change devtoolset
 ```bash
@@ -76,5 +77,3 @@ If you don't see any logs in /var/log/maillog, start rsyslogd
 ```bash
 - rsyslogd
 ```
-
-
