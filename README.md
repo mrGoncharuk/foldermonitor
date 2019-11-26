@@ -1,5 +1,5 @@
 # foldermonitor
-### Foldermonitor is daemon program which monitors chosen folder and writes parsed data of files created inside it to database.
+### Foldermonitor is daemon program which monitors chosen folder and writes parsed data of files created inside it to database. Also used docker container for deploying purpose with centOS6 as base and SQLite database.
 
 ## Installation
 Clone repository
