@@ -5,7 +5,7 @@ services:
     container_name: foldermonitor_container
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup
     privileged: true

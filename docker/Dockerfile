@@ -1,17 +1,19 @@
 FROM centos:centos7
-LABEL The CentOS Project <cloud-ops@centos.org>
 
+# System setup
 RUN yum -y update; yum clean all
 RUN yum -y install centos-release-scl
-RUN yum -y install -y devtoolset-7
+RUN yum -y install devtoolset-7
+SHELL [ "/usr/bin/scl", "enable", "devtoolset-7" ]
 
+# Dependency packages install
 RUN yum -y install sqlite-devel.x86_64
-RUN yum -y install rsyslog
+RUN yum -y install rsyslog && systemctl enable rsyslog
 
+# Utilities install
 RUN yum -y install git
 RUN yum -y install vim
 
-RUN scl enable devtoolset-7 bash
-RUN git clone https://github.com/mrGoncharuk/foldermonitor.git /home/foldermonitor
-
+RUN /home/foldermonitor/build.sh
+RUN /home/foldermonitor/test.sh
 #RUN bash
