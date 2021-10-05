@@ -14,7 +14,7 @@ RUN yum -y install rsyslog && systemctl enable rsyslog
 RUN yum -y install git
 RUN yum -y install vim
 
-RUN git clone https://github.com/mrGoncharuk/foldermonitor.git /home/foldermonitor
-RUN /home/foldermonitor/scripts/build.sh
-RUN /home/foldermonitor/scripts/test.sh
+RUN git clone -b develop https://github.com/mrGoncharuk/foldermonitor.git /home/foldermonitor
+RUN sh /home/foldermonitor/scripts/build.sh
+RUN sh /home/foldermonitor/scripts/test.sh
 #RUN bash
