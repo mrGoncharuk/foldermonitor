@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  foldermonitord:
+    container_name: foldermonitor_container
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup
+    privileged: true
+      
+    cap_add:
+      - "NET_ADMIN"
+      - "SYS_ADMIN"
+      - "SYS_PTRACE"
+    security_opt:
+      - "seccomp=unconfined"
+    command: "/usr/sbin/init"
+    
