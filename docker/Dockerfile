@@ -17,4 +17,3 @@ RUN yum -y install vim
 RUN git clone -b develop https://github.com/mrGoncharuk/foldermonitor.git /home/foldermonitor
 RUN sh /home/foldermonitor/scripts/build.sh
 RUN sh /home/foldermonitor/scripts/test.sh
-#RUN bash
